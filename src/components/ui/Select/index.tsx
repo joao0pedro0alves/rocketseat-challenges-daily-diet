@@ -1,0 +1,30 @@
+import type { TouchableOpacityProps } from 'react-native'
+import {
+  SelectContainer,
+  ButtonTitle,
+  type SelectVariants,
+  Circle,
+} from './styles'
+
+interface SelectProps extends TouchableOpacityProps {
+  title: string
+  variant?: SelectVariants
+  selected?: boolean
+}
+
+export function Select(props: SelectProps) {
+  const { title, variant = 'PRIMARY', selected = false, ...rest } = props
+
+  return (
+    <SelectContainer
+      activeOpacity={1}
+      isSelected={selected}
+      variant={variant}
+      {...rest}
+    >
+      <Circle variant={variant} />
+
+      <ButtonTitle>{title}</ButtonTitle>
+    </SelectContainer>
+  )
+}
