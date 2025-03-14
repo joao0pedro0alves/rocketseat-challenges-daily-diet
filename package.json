@@ -15,8 +15,10 @@
     "react-native": "0.76.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
+    "@babel/core": "^7.26.10",
+    "@biomejs/biome": "^1.9.4",
     "@types/react": "~18.3.12",
+    "babel-plugin-module-resolver": "^5.0.2",
     "typescript": "^5.3.3"
   },
   "private": true
