@@ -1,7 +1,11 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { format } from 'date-fns'
 
-import { DietListContainer } from './styles'
+import {
+  DietListContainer,
+  DietListLinearGradient,
+  DietSectionList,
+} from './styles'
 import { _mockMeals, type MealDTO } from '@/_mock/_meals'
 
 import { DietListItem } from './DietListItem'
@@ -15,34 +19,43 @@ export type DietSection = {
 // ---------------------------------------------------------------
 
 export function DietList() {
+  const [meals] = useState(_mockMeals)
+
   const sections = useMemo(() => {
-    const dates = [...new Set(_mockMeals.map(meal => meal.date))]
+    const dates = [...new Set(meals.map(meal => meal.date))]
 
     return dates.reduce((acc, date) => {
-      const meals = _mockMeals.filter(meal => meal.date === date)
+      const data = meals.filter(meal => meal.date === date)
 
       acc.push({
         title: format(new Date(date), 'dd.MM.yy'),
-        data: meals,
+        data: data,
       })
 
       return acc
     }, [] as DietSection[])
-  }, [])
+  }, [meals])
 
   return (
-    <DietListContainer
-      showsVerticalScrollIndicator={false}
-      sections={sections}
-      keyExtractor={(item, index) => `${(item as MealDTO).id}-${index}`}
-      renderItem={props => {
-        const meal = props.item as MealDTO
-        return <DietListItem data={meal} />
-      }}
-      renderSectionHeader={({ section }) => {
-        const dietSection = section as unknown as DietSection
-        return <DietListSectionHeader title={dietSection.title} />
-      }}
-    />
+    <DietListContainer>
+      <DietSectionList
+        showsVerticalScrollIndicator={false}
+        sections={sections}
+        keyExtractor={(item, index) => `${(item as MealDTO).id}-${index}`}
+        contentContainerStyle={{
+          paddingBottom: 100,
+        }}
+        renderItem={props => {
+          const meal = props.item as MealDTO
+          return <DietListItem data={meal} />
+        }}
+        renderSectionHeader={({ section }) => {
+          const dietSection = section as unknown as DietSection
+          return <DietListSectionHeader title={dietSection.title} />
+        }}
+      />
+
+      <DietListLinearGradient />
+    </DietListContainer>
   )
 }

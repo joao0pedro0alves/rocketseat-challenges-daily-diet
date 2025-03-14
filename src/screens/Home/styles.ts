@@ -13,7 +13,8 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
+  margin-bottom: 30px;
 `
 
 export const Avatar = styled.Image`
@@ -22,7 +23,8 @@ export const Avatar = styled.Image`
 `
 
 export const DietListHeader = styled.View`
-  margin-top: 36px;
+  /* margin-top: 36px; */
+  margin-top: 30px;
 `
 
 export const DietListHeaderTitle = styled.Text`
