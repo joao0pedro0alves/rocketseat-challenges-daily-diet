@@ -23,7 +23,7 @@ export function App() {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(theme.COLORS.GRAY_7)
+      NavigationBar.setBackgroundColorAsync(theme.COLORS.GRAY_1)
     }
   }, [])
 
