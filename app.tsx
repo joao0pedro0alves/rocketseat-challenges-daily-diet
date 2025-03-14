@@ -29,7 +29,7 @@ export function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" translucent />
 
       <SafeAreaProvider>
         {fontsLoaded ? <Home /> : <Loading />}

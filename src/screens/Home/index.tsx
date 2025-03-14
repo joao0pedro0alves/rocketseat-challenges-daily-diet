@@ -1,31 +1,38 @@
-import { PencilSimpleLine, Trash } from 'phosphor-react-native'
+import { Image } from 'react-native'
+import { Plus } from 'phosphor-react-native'
 
+import logoImage from '@/assets/logo.png'
+import sampleAvatar from '@/assets/sample/avatar.png'
+
+import { DietPercentageCard } from '@/components/DietPercentageCard'
+import { DietList } from '@/components/DietList'
 import { Button } from '@/components/ui/Button'
-import { HomeContainer, Title } from './styles'
-import { Select } from '@/components/ui/Select'
-import { View } from 'react-native'
-import { Input } from '@/components/ui/Input'
+
+import {
+  Avatar,
+  DietListHeader,
+  DietListHeaderTitle,
+  Header,
+  HomeContainer,
+} from './styles'
 
 export function Home() {
   return (
     <HomeContainer>
-      <Title>Daily Diet</Title>
+      <Header>
+        <Image source={logoImage} />
+        <Avatar source={sampleAvatar} />
+      </Header>
 
-      <Button title="Button filled" variant="FILLED" icon={PencilSimpleLine} />
+      <DietPercentageCard />
 
-      <Button title="Button outlined" variant="OUTLINED" icon={Trash} />
+      <DietListHeader>
+        <DietListHeaderTitle>Refeições</DietListHeaderTitle>
 
-      <View style={{ width: '100%', flexDirection: 'row', gap: 8 }}>
-        <Select title="Select primary" variant="PRIMARY" />
-        <Select title="Select secondary" variant="SECONDARY" />
-      </View>
+        <Button icon={Plus} title="Nova refeição" />
+      </DietListHeader>
 
-      <View style={{ width: '100%', flexDirection: 'row', gap: 8 }}>
-        <Select title="Select primary*" variant="PRIMARY" selected />
-        <Select title="Select secondary*" variant="SECONDARY" selected />
-      </View>
-
-      <Input label="Label" />
+      <DietList />
     </HomeContainer>
   )
 }

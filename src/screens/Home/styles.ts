@@ -3,17 +3,34 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const HomeContainer = styled(SafeAreaView)`
   flex: 1;
-  justify-content: center;
-  align-items: center;
-
-  gap: 16px;
   padding: 24px;
 `
 
-export const Title = styled.Text`
+export const Header = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 36px;
+`
+
+export const Avatar = styled.Image`
+  width: 40px;
+  height: 40px;
+`
+
+export const DietListHeader = styled.View`
+  margin-top: 36px;
+`
+
+export const DietListHeaderTitle = styled.Text`
+  margin-bottom: 8px;
+
   ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE.XL}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.GREEN_DARK};
+    color: ${theme.COLORS.GRAY_100};
+    font-size: ${theme.FONT_SIZE.MD}px;
+    font-family: ${theme.FONT_FAMILY.REGULAR};
   `}
 `
