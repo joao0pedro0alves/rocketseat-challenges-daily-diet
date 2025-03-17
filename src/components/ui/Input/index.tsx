@@ -20,7 +20,9 @@ export function Input({ label, ...rest }: InputProps) {
 
   return (
     <InputContainer>
-      <Label>{label}</Label>
+      <Label color="GRAY_200" variant="h4">
+        {label}
+      </Label>
 
       <StyledTextInput
         isActive={isActive}

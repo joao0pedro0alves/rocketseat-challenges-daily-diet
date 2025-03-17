@@ -41,14 +41,6 @@ export const SelectContainer = styled.TouchableOpacity<SelectContainerProps>`
    }}
 `
 
-export const ButtonTitle = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
-`
-
 export const Circle = styled.View<CircleProps>`
   height: 8px;
   width: 8px;

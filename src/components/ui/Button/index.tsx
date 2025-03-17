@@ -1,9 +1,10 @@
 import type { TouchableOpacityProps } from 'react-native'
 import type { Icon } from 'phosphor-react-native'
 
-import { ButtonContainer, ButtonTitle, type ButtonVariants } from './styles'
+import { ButtonContainer, type ButtonVariants } from './styles'
 import { useTheme } from 'styled-components'
 import { useState } from 'react'
+import { Typography } from '../Typography'
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string
@@ -44,7 +45,12 @@ export function Button(props: ButtonProps) {
         />
       )}
 
-      <ButtonTitle variant={variant}>{title}</ButtonTitle>
+      <Typography
+        variant="h4"
+        color={variant === 'OUTLINED' ? 'GRAY_100' : 'WHITE'}
+      >
+        {title}
+      </Typography>
     </ButtonContainer>
   )
 }

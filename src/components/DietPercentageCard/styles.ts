@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native'
 import { ArrowUpRight } from 'phosphor-react-native'
+import { Typography } from '../ui/Typography'
 
 export const DietPercentageCardContainer = styled.View`
   padding: 20px 16px;
@@ -9,24 +10,12 @@ export const DietPercentageCardContainer = styled.View`
   border-radius: 8px;
 `
 
-export const Title = styled.Text`
+export const Percentage = styled(Typography)`
   text-align: center;
-
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.XLL}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
 `
 
-export const SubTitle = styled.Text`
+export const Description = styled(Typography)`
   text-align: center;
-
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_200};
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-  `}
 `
 
 export const ArrowIcon = styled(ArrowUpRight).attrs(({ theme }) => ({

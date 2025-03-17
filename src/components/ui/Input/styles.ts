@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components/native'
+import { typographyVariants } from '../Typography/styles'
+import { Typography } from '../Typography'
 
 interface StyledTextInputProps {
   isActive: boolean
@@ -8,14 +10,8 @@ export const InputContainer = styled.View`
   width: 100%;
 `
 
-export const Label = styled.Text`
+export const Label = styled(Typography)`
   margin-bottom: 4px;
-
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_200};
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
 `
 
 export const StyledTextInput = styled.TextInput<StyledTextInputProps>`
@@ -27,10 +23,9 @@ export const StyledTextInput = styled.TextInput<StyledTextInputProps>`
 
   ${({ theme, isActive }) => css`
     color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.MD}px;
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-
     border: 1px solid ${isActive ? theme.COLORS.GRAY_300 : theme.COLORS.GRAY_500};
+    
+    ${typographyVariants(theme).body1}
   `}
 
 `

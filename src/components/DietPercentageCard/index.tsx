@@ -1,8 +1,8 @@
 import {
   ArrowIcon,
   DietPercentageCardContainer,
-  SubTitle,
-  Title,
+  Description,
+  Percentage,
 } from './styles'
 
 export function DietPercentageCard() {
@@ -10,9 +10,11 @@ export function DietPercentageCard() {
     <DietPercentageCardContainer>
       <ArrowIcon />
 
-      <Title>90,86%</Title>
+      <Percentage variant="h1">90,86%</Percentage>
 
-      <SubTitle>das refeições dentro da dieta</SubTitle>
+      <Description variant="body2" color="GRAY_200">
+        das refeições dentro da dieta
+      </Description>
     </DietPercentageCardContainer>
   )
 }

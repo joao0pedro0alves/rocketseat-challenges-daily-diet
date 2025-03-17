@@ -1,5 +1,6 @@
 import type { MealDTO } from '@/_mock/_meals'
-import { DietListItemContainer, Time, Title, Circle, Divider } from './styles'
+import { DietListItemContainer, Title, Circle, Divider } from './styles'
+import { Typography } from '@/components/ui/Typography'
 
 interface DietListItemProps {
   data: MealDTO
@@ -8,11 +9,11 @@ interface DietListItemProps {
 export function DietListItem({ data }: DietListItemProps) {
   return (
     <DietListItemContainer>
-      <Time>{data.time}</Time>
+      <Typography variant="caption">{data.time}</Typography>
 
       <Divider />
 
-      <Title>{data.name}</Title>
+      <Title color="GRAY_200">{data.name}</Title>
 
       <Circle isSucess={data.belongsToDiet} />
     </DietListItemContainer>

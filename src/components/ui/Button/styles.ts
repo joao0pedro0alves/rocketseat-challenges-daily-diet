@@ -35,15 +35,3 @@ export const ButtonContainer = styled.TouchableOpacity<ButtonContainerProps>`
      `
    }}
 `
-
-type ButtonTitleProps = {
-  variant: ButtonVariants
-}
-
-export const ButtonTitle = styled.Text<ButtonTitleProps>`
-  ${({ theme, variant }) => css`
-    color: ${variant === 'OUTLINED' ? theme.COLORS.GRAY_100 : theme.COLORS.WHITE};
-    font-size: ${theme.FONT_SIZE.SM}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
-`

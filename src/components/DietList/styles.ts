@@ -25,6 +25,4 @@ export const DietListLinearGradient = styled(LinearGradient).attrs(() => ({
   z-index: 10;
   bottom: -16px;
   left: -24px;
-
-  
 `

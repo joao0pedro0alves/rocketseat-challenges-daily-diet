@@ -1,4 +1,5 @@
-import { DietListSectionHeaderContainer, Title } from './styles'
+import { Typography } from '@/components/ui/Typography'
+import { DietListSectionHeaderContainer } from './styles'
 
 interface DietListSectionHeaderProps {
   title: string
@@ -7,7 +8,7 @@ interface DietListSectionHeaderProps {
 export function DietListSectionHeader({ title }: DietListSectionHeaderProps) {
   return (
     <DietListSectionHeaderContainer>
-      <Title>{title}</Title>
+      <Typography variant="h3">{title}</Typography>
     </DietListSectionHeaderContainer>
   )
 }

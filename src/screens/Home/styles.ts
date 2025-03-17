@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components/native'
+import styled from 'styled-components/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Typography } from '@/components/ui/Typography'
 
 export const HomeContainer = styled(SafeAreaView)`
   flex: 1;
@@ -27,12 +28,6 @@ export const DietListHeader = styled.View`
   margin-top: 30px;
 `
 
-export const DietListHeaderTitle = styled.Text`
+export const DietListHeaderTitle = styled(Typography)`
   margin-bottom: 8px;
-
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.MD}px;
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-  `}
 `

@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components/native'
+import { Typography } from '@/components/ui/Typography'
+import styled from 'styled-components/native'
 
 export const DietListItemContainer = styled.View`
   flex-direction: row;
@@ -18,22 +19,8 @@ export const Divider = styled.View`
   width: 1px;
 `
 
-export const Time = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.XS}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
-`
-
-export const Title = styled.Text`
+export const Title = styled(Typography)`
   flex: 1;
-
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_200};
-    font-size: ${theme.FONT_SIZE.MD}px;
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-  `}
 `
 
 type CircleProps = {

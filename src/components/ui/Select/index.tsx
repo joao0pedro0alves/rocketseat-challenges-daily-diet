@@ -1,10 +1,6 @@
 import type { TouchableOpacityProps } from 'react-native'
-import {
-  SelectContainer,
-  ButtonTitle,
-  type SelectVariants,
-  Circle,
-} from './styles'
+import { SelectContainer, type SelectVariants, Circle } from './styles'
+import { Typography } from '../Typography'
 
 interface SelectProps extends TouchableOpacityProps {
   title: string
@@ -24,7 +20,7 @@ export function Select(props: SelectProps) {
     >
       <Circle variant={variant} />
 
-      <ButtonTitle>{title}</ButtonTitle>
+      <Typography variant="h4">{title}</Typography>
     </SelectContainer>
   )
 }

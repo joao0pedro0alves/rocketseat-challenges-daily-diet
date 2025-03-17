@@ -10,13 +10,14 @@ export type TypographyVariants =
   | 'body1'
   | 'body2'
   | 'body3'
+  | 'caption'
 
 export interface TypographyContainerProps {
   variant: TypographyVariants
   color: keyof typeof defaultTheme.COLORS
 }
 
-const variants = (
+export const typographyVariants = (
   theme: DefaultTheme
 ): Record<TypographyVariants, FlattenSimpleInterpolation> => ({
   h1: css`
@@ -47,10 +48,14 @@ const variants = (
     font-size: ${theme.FONT_SIZE.XS}px;
     font-family: ${theme.FONT_FAMILY.REGULAR};
   `,
+  caption: css`
+    font-size: ${theme.FONT_SIZE.XS}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+  `,
 })
 
 export const TypographyContainer = styled.Text<TypographyContainerProps>`
   color: ${({ theme, color }) => theme.COLORS[color] || theme.COLORS.GRAY_100};
 
-  ${({ theme, variant }) => variants(theme)[variant]}
+  ${({ theme, variant }) => typographyVariants(theme)[variant]}
 `

@@ -27,7 +27,7 @@ export function Home() {
       <DietPercentageCard />
 
       <DietListHeader>
-        <DietListHeaderTitle>Refeições</DietListHeaderTitle>
+        <DietListHeaderTitle variant="body1">Refeições</DietListHeaderTitle>
 
         <Button icon={Plus} title="Nova refeição" />
       </DietListHeader>
