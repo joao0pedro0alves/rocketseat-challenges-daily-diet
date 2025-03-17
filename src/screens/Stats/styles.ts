@@ -1,7 +1,9 @@
-import { Typography } from '@/components/ui/Typography'
 import styled from 'styled-components/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const StatsContainer = styled.SafeAreaView`
+import { Typography } from '@/components/ui/Typography'
+
+export const StatsContainer = styled(SafeAreaView)`
   flex:1;
   background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
 

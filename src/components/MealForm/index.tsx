@@ -7,7 +7,12 @@ import { Typography } from '../ui/Typography'
 import { DateContainer, MealFormContainer, SelectContainer } from './styles'
 import { Button } from '../ui/Button'
 
-export function MealForm() {
+interface MealFormProps {
+  onSubmit?: () => void
+  mode?: 'edit' | 'new'
+}
+
+export function MealForm({ mode }: MealFormProps) {
   return (
     <MealFormContainer>
       <Input label="Nome" />
@@ -35,7 +40,11 @@ export function MealForm() {
         </SelectContainer>
       </View>
 
-      <Button title="Cadastrar refeição" />
+      {mode === 'edit' ? (
+        <Button title="Salvar alterações" />
+      ) : (
+        <Button title="Cadastrar refeição" />
+      )}
     </MealFormContainer>
   )
 }
