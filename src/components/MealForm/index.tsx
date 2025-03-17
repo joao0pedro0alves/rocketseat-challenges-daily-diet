@@ -12,7 +12,7 @@ interface MealFormProps {
   mode?: 'edit' | 'new'
 }
 
-export function MealForm({ mode }: MealFormProps) {
+export function MealForm({ mode, onSubmit }: MealFormProps) {
   return (
     <MealFormContainer>
       <Input label="Nome" />
@@ -41,9 +41,9 @@ export function MealForm({ mode }: MealFormProps) {
       </View>
 
       {mode === 'edit' ? (
-        <Button title="Salvar alterações" />
+        <Button onPress={onSubmit} title="Salvar alterações" />
       ) : (
-        <Button title="Cadastrar refeição" />
+        <Button onPress={onSubmit} title="Cadastrar refeição" />
       )}
     </MealFormContainer>
   )

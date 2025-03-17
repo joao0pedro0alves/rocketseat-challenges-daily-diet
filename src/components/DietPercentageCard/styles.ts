@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components/native'
+import styled from 'styled-components/native'
 import { ArrowUpRight } from 'phosphor-react-native'
 import { Typography } from '../ui/Typography'
 
@@ -18,13 +18,18 @@ export const Description = styled(Typography)`
   text-align: center;
 `
 
-export const ArrowIcon = styled(ArrowUpRight).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.COLORS.GREEN_DARK,
-}))`
+export const IconButton = styled.TouchableOpacity`
   align-self: flex-end;
   position: absolute;
 
   top: 20px;
   right: 16px;
+  z-index: 10;
+`
+
+export const ArrowIcon = styled(ArrowUpRight).attrs(({ theme }) => ({
+  size: 24,
+  color: theme.COLORS.GREEN_DARK,
+}))`
+
 `

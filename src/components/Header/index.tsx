@@ -5,10 +5,12 @@ import { useTheme } from 'styled-components/native'
 import {
   ArrowIcon,
   HeaderContainer,
+  IconButton,
   Title,
   headerVariants,
   type HeaderVariants,
 } from './styles'
+import { useNavigation } from '@react-navigation/native'
 
 interface HeaderProps {
   title: string
@@ -18,13 +20,21 @@ interface HeaderProps {
 export function Header({ title, variant = 'default' }: HeaderProps) {
   const theme = useTheme()
 
+  const navigation = useNavigation()
+
   const variants = headerVariants(theme)
+
+  function handleGoBack() {
+    navigation.goBack()
+  }
 
   return (
     <HeaderContainer variant={variant}>
       <StatusBar backgroundColor={variants[variant]} />
 
-      <ArrowIcon />
+      <IconButton onPress={handleGoBack}>
+        <ArrowIcon />
+      </IconButton>
 
       <Title variant="h3">{title}</Title>
 

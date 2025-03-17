@@ -30,6 +30,8 @@ export const Title = styled(Typography)`
   flex: 1;
 `
 
+export const IconButton = styled.TouchableOpacity``
+
 export const ArrowIcon = styled(ArrowLeft).attrs(({ theme }) => ({
   size: 24,
   color: theme.COLORS.GRAY_200,

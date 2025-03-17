@@ -12,7 +12,7 @@ import {
 import { ThemeProvider } from 'styled-components'
 
 import theme from '@/theme'
-import { AppRoutes } from '@/routes'
+import { Routes } from '@/routes'
 import { Loading } from '@/components/ui/Loading'
 
 export function App() {
@@ -32,7 +32,7 @@ export function App() {
       <StatusBar style="dark" translucent />
 
       <SafeAreaProvider>
-        {fontsLoaded ? <AppRoutes /> : <Loading />}
+        {fontsLoaded ? <Routes /> : <Loading />}
       </SafeAreaProvider>
     </ThemeProvider>
   )

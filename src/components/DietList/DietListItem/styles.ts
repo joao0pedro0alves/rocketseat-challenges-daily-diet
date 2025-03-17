@@ -1,7 +1,7 @@
 import { Typography } from '@/components/ui/Typography'
 import styled from 'styled-components/native'
 
-export const DietListItemContainer = styled.View`
+export const DietListItemContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   gap: 12px;

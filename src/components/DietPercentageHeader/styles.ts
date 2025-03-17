@@ -22,13 +22,15 @@ export const Description = styled(Typography)`
   text-align: center;
 `
 
-export const ArrowIcon = styled(ArrowLeft).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.COLORS.GREEN_DARK,
-}))`
+export const IconButton = styled.TouchableOpacity`
   align-self: flex-end;
   position: absolute;
 
   top: 36px;
   left: 24px;
 `
+
+export const ArrowIcon = styled(ArrowLeft).attrs(({ theme }) => ({
+  size: 24,
+  color: theme.COLORS.GREEN_DARK,
+}))``

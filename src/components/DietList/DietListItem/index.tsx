@@ -4,11 +4,12 @@ import { Typography } from '@/components/ui/Typography'
 
 interface DietListItemProps {
   data: MealDTO
+  onPress: () => void
 }
 
-export function DietListItem({ data }: DietListItemProps) {
+export function DietListItem({ data, onPress }: DietListItemProps) {
   return (
-    <DietListItemContainer>
+    <DietListItemContainer onPress={onPress} activeOpacity={0.8}>
       <Typography variant="caption">{data.time}</Typography>
 
       <Divider />

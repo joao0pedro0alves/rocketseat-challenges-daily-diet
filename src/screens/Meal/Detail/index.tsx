@@ -1,4 +1,5 @@
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
 
 import { Header } from '@/components/Header'
@@ -9,6 +10,25 @@ import { Button } from '@/components/ui/Button'
 import { Content, DetailMealContainer, Highlight } from './styles'
 
 export function DetailMeal() {
+  const navigation = useNavigation()
+
+  function handleEditMeal() {
+    navigation.navigate('editMeal', { mealId: '1' })
+  }
+
+  function handleRemoveMeal() {
+    // Todo: desenvolver componente de confirmação
+    Alert.alert('Remover', 'Tem certeza que deseja remover a refeição?', [
+      {
+        text: 'Sim',
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ])
+  }
+
   return (
     <DetailMealContainer>
       <Header variant="green" title="Refeição" />
@@ -33,9 +53,18 @@ export function DetailMeal() {
         <Chip title="dentro da dieta" />
 
         <View style={{ flex: 1, justifyContent: 'flex-end', gap: 8 }}>
-          <Button icon={PencilSimpleLine} title="Editar refeição" />
+          <Button
+            onPress={handleEditMeal}
+            icon={PencilSimpleLine}
+            title="Editar refeição"
+          />
 
-          <Button icon={Trash} variant="OUTLINED" title="Excluir refeição" />
+          <Button
+            onPress={handleRemoveMeal}
+            icon={Trash}
+            variant="OUTLINED"
+            title="Excluir refeição"
+          />
         </View>
       </Content>
     </DetailMealContainer>

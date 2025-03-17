@@ -5,9 +5,22 @@ import { FeedbackContainer, FeedbackHeader, FeedbackImage } from './styles'
 
 import inDietIllustration from '@/assets/illustration/in-diet-illustration.png'
 import outDietIllustration from '@/assets/illustration/out-diet-illustration.png'
+import { useNavigation, useRoute } from '@react-navigation/native'
+
+type RouteParams = {
+  inDiet: boolean
+}
 
 export function Feedback() {
-  const inDiet = true
+  const route = useRoute()
+
+  const navigation = useNavigation()
+
+  const { inDiet } = route.params as RouteParams
+
+  function handleNavigateToInitialRoute() {
+    navigation.navigate('home')
+  }
 
   return (
     <FeedbackContainer>
@@ -41,7 +54,10 @@ export function Feedback() {
         height={288}
       />
 
-      <Button title="Ir para a página inicial" />
+      <Button
+        onPress={handleNavigateToInitialRoute}
+        title="Ir para a página inicial"
+      />
     </FeedbackContainer>
   )
 }

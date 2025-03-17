@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
 
 import {
@@ -36,6 +37,12 @@ export function DietList() {
     }, [] as DietSection[])
   }, [meals])
 
+  const navigation = useNavigation()
+
+  function handleShowMeal(mealId: string) {
+    navigation.navigate('detailMeal', { mealId })
+  }
+
   return (
     <DietListContainer>
       <DietSectionList
@@ -47,7 +54,9 @@ export function DietList() {
         }}
         renderItem={props => {
           const meal = props.item as MealDTO
-          return <DietListItem data={meal} />
+          return (
+            <DietListItem onPress={() => handleShowMeal(meal.id)} data={meal} />
+          )
         }}
         renderSectionHeader={({ section }) => {
           const dietSection = section as unknown as DietSection
