@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import type { TextInputProps } from 'react-native'
+import type { StyleProp, TextInputProps, ViewStyle } from 'react-native'
 
 import { InputContainer, Label, StyledTextInput } from './styles'
 
 interface InputProps extends TextInputProps {
   label: string
+  inputStyle?: StyleProp<ViewStyle>
 }
 
-export function Input({ label, ...rest }: InputProps) {
+export function Input({ label, style, inputStyle, ...rest }: InputProps) {
   const [isActive, setIsActive] = useState(false)
 
   function handleFocus() {
@@ -19,7 +20,7 @@ export function Input({ label, ...rest }: InputProps) {
   }
 
   return (
-    <InputContainer>
+    <InputContainer style={style}>
       <Label color="GRAY_200" variant="h4">
         {label}
       </Label>
@@ -28,6 +29,7 @@ export function Input({ label, ...rest }: InputProps) {
         isActive={isActive}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        style={inputStyle}
         {...rest}
       />
     </InputContainer>
