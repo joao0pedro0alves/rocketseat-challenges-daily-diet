@@ -1,4 +1,10 @@
+import { useMemo } from 'react'
+import { View } from 'react-native'
+import { useTheme } from 'styled-components'
+import { useDietContext } from '@/context/hooks/useDietContext'
+
 import { DietPercentageHeader } from '@/components/DietPercentageHeader'
+import { Typography } from '@/components/ui/Typography'
 import {
   Content,
   StatsCard,
@@ -6,12 +12,33 @@ import {
   StatsContainer,
   Title,
 } from './styles'
-import { useTheme } from 'styled-components'
-import { Typography } from '@/components/ui/Typography'
-import { View } from 'react-native'
 
 export function Stats() {
   const theme = useTheme()
+
+  const { meals } = useDietContext()
+
+  const summary = useMemo(() => {
+    return meals.reduce(
+      (acc, meal) => {
+        acc.mealsCount++
+
+        if (meal.belongsToDiet) {
+          acc.mealsInDietCount++
+        } else {
+          acc.mealsOutDietCount++
+        }
+
+        return acc
+      },
+      {
+        bestSequence: 0,
+        mealsCount: 0,
+        mealsInDietCount: 0,
+        mealsOutDietCount: 0,
+      }
+    )
+  }, [meals])
 
   return (
     <StatsContainer>
@@ -27,7 +54,7 @@ export function Stats() {
         <Title variant="h4">Estatísticas gerais</Title>
 
         <StatsCard>
-          <Typography variant="h3">22</Typography>
+          <Typography variant="h3">{summary.bestSequence}</Typography>
 
           <StatsCardSubtitle color="GRAY_200" variant="body2">
             melhor sequência de pratos dentro da dieta
@@ -35,16 +62,16 @@ export function Stats() {
         </StatsCard>
 
         <StatsCard>
-          <Typography variant="h3">109</Typography>
+          <Typography variant="h3">{summary.mealsCount}</Typography>
 
           <StatsCardSubtitle color="GRAY_200" variant="body2">
-            melhor sequência de pratos dentro da dieta
+            refeições registradas
           </StatsCardSubtitle>
         </StatsCard>
 
         <View style={{ flexDirection: 'row', gap: 12 }}>
           <StatsCard variant="green">
-            <Typography variant="h3">99</Typography>
+            <Typography variant="h3">{summary.mealsInDietCount}</Typography>
 
             <StatsCardSubtitle color="GRAY_200" variant="body2">
               refeições dentro da dieta
@@ -52,7 +79,7 @@ export function Stats() {
           </StatsCard>
 
           <StatsCard variant="red">
-            <Typography variant="h3">10</Typography>
+            <Typography variant="h3">{summary.mealsOutDietCount}</Typography>
 
             <StatsCardSubtitle color="GRAY_200" variant="body2">
               refeições fora da dieta

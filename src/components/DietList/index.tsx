@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { format } from 'date-fns'
 
@@ -11,6 +11,7 @@ import { _mockMeals, type MealDTO } from '@/_mock/_meals'
 
 import { DietListItem } from './DietListItem'
 import { DietListSectionHeader } from './DietListSectionHeader'
+import { useDietContext } from '@/context/hooks/useDietContext'
 
 export type DietSection = {
   title: string
@@ -20,7 +21,7 @@ export type DietSection = {
 // ---------------------------------------------------------------
 
 export function DietList() {
-  const [meals] = useState(_mockMeals)
+  const { meals } = useDietContext()
 
   const sections = useMemo(() => {
     const dates = [...new Set(meals.map(meal => meal.date))]

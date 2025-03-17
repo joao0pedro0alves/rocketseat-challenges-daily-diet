@@ -5,7 +5,7 @@ import { Typography } from '@/components/ui/Typography'
 
 export const StatsContainer = styled(SafeAreaView)`
   flex:1;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  /* background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT}; */
 
 `
 

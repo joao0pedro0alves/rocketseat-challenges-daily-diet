@@ -14,7 +14,7 @@ export const _mockMeals: MealDTO[] = [
     description: 'Scrambled eggs with toast and orange juice.',
     date: '2025-03-14',
     time: '08:00',
-    belongsToDiet: true,
+    belongsToDiet: false,
   },
   {
     id: '2',
@@ -22,7 +22,7 @@ export const _mockMeals: MealDTO[] = [
     description: 'Grilled chicken salad with vinaigrette.',
     date: '2025-03-14',
     time: '12:00',
-    belongsToDiet: true,
+    belongsToDiet: false,
   },
   {
     id: '3',
@@ -38,7 +38,7 @@ export const _mockMeals: MealDTO[] = [
     description: 'Greek yogurt with honey and almonds.',
     date: '2025-03-14',
     time: '10:30',
-    belongsToDiet: true,
+    belongsToDiet: false,
   },
   {
     id: '5',
@@ -54,7 +54,7 @@ export const _mockMeals: MealDTO[] = [
     description: 'Oatmeal with blueberries and chia seeds.',
     date: '2025-03-15',
     time: '07:30',
-    belongsToDiet: true,
+    belongsToDiet: false,
   },
   {
     id: '7',
@@ -87,5 +87,13 @@ export const _mockMeals: MealDTO[] = [
     date: '2025-03-15',
     time: '22:30',
     belongsToDiet: true,
+  },
+  {
+    id: '11',
+    name: 'Late Night Snack',
+    description: 'Protein shake with banana and almond milk.',
+    date: '2025-03-17',
+    time: '22:30',
+    belongsToDiet: false,
   },
 ]

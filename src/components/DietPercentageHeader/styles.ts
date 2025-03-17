@@ -2,11 +2,15 @@ import styled from 'styled-components/native'
 import { ArrowLeft } from 'phosphor-react-native'
 import { Typography } from '../ui/Typography'
 
-export const DietPercentageCardContainer = styled.View`
+interface StyleProps {
+  isLess: boolean
+}
+
+export const DietPercentageCardContainer = styled.View<StyleProps>`
   padding: 20px 16px;
   position: relative;
 
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, isLess }) => (isLess ? theme.COLORS.RED_LIGHT : theme.COLORS.GREEN_LIGHT)};
   border-radius: 8px;
 
   height: 200px;
@@ -30,7 +34,6 @@ export const IconButton = styled.TouchableOpacity`
   left: 24px;
 `
 
-export const ArrowIcon = styled(ArrowLeft).attrs(({ theme }) => ({
+export const ArrowIcon = styled(ArrowLeft).attrs(() => ({
   size: 24,
-  color: theme.COLORS.GREEN_DARK,
 }))``

@@ -29,7 +29,11 @@ export function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="dark" translucent />
+      <StatusBar
+        style="light"
+        translucent
+        backgroundColor={theme.COLORS.GRAY_100}
+      />
 
       <SafeAreaProvider>
         {fontsLoaded ? <Routes /> : <Loading />}
