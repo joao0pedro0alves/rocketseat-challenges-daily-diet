@@ -3,7 +3,7 @@ import type { StyleProp, TextInputProps, ViewStyle } from 'react-native'
 
 import { InputContainer, Label, StyledTextInput } from './styles'
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   label: string
   inputStyle?: StyleProp<ViewStyle>
 }

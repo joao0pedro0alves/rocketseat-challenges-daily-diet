@@ -7,7 +7,9 @@ import { Content, NewMealContainer } from './styles'
 export function NewMeal() {
   const navigation = useNavigation()
 
-  async function handleSave() {
+  async function handleSave(data: unknown) {
+    console.log(data)
+
     // #...
     navigation.navigate('feedback', { inDiet: true })
   }
