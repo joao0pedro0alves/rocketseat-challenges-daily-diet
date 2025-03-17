@@ -8,9 +8,10 @@ import { useTheme } from 'styled-components'
 
 interface RHFInputProps extends InputProps {
   name: keyof MealFormData
+  maskFn?: (value: string) => string
 }
 
-export function RHFInput({ name, inputStyle, ...rest }: RHFInputProps) {
+export function RHFInput({ name, inputStyle, maskFn, ...rest }: RHFInputProps) {
   const theme = useTheme()
 
   const {
@@ -29,7 +30,7 @@ export function RHFInput({ name, inputStyle, ...rest }: RHFInputProps) {
           <View>
             <Input
               value={String(value)}
-              onChangeText={value => onChange(value)}
+              onChangeText={value => onChange(maskFn ? maskFn(value) : value)}
               inputStyle={[
                 inputStyle,
                 error && { borderColor: theme.COLORS.RED_MID },

@@ -17,6 +17,9 @@ import {
   SelectContainer,
 } from './styles'
 
+import { dateApplyMask } from '@/utils/masks/date-apply-mask'
+import { timeApplyMask } from '@/utils/masks/time-apply-mask'
+
 // --------------------------------------------------------------------------
 
 const mealFormValidationScheme = z.object({
@@ -74,18 +77,22 @@ export function MealForm({ mode, initialValues, onSubmit }: MealFormProps) {
 
           <DateContainer>
             <RHFInput
+              maskFn={dateApplyMask}
               name="date"
               label="Data"
               keyboardType="numeric"
+              placeholder="DD/MM/YYYY"
               style={{
                 minWidth: 153,
               }}
             />
 
             <RHFInput
+              maskFn={timeApplyMask}
               name="time"
               label="Hora"
               keyboardType="numeric"
+              placeholder="HH:MM"
               style={{
                 minWidth: 153,
               }}
