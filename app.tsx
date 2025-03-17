@@ -11,9 +11,9 @@ import {
 } from '@expo-google-fonts/nunito'
 import { ThemeProvider } from 'styled-components'
 
-import { Home } from '@/screens/Home'
-import { Loading } from '@/components/Loading'
 import theme from '@/theme'
+import { AppRoutes } from '@/routes'
+import { Loading } from '@/components/ui/Loading'
 
 export function App() {
   const [fontsLoaded] = useFonts({
@@ -32,7 +32,7 @@ export function App() {
       <StatusBar style="dark" translucent />
 
       <SafeAreaProvider>
-        {fontsLoaded ? <Home /> : <Loading />}
+        {fontsLoaded ? <AppRoutes /> : <Loading />}
       </SafeAreaProvider>
     </ThemeProvider>
   )
