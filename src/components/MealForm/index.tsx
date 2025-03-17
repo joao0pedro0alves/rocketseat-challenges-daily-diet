@@ -5,6 +5,7 @@ import { Select } from '../ui/Select'
 import { Typography } from '../ui/Typography'
 
 import { DateContainer, MealFormContainer, SelectContainer } from './styles'
+import { Button } from '../ui/Button'
 
 export function MealForm() {
   return (
@@ -23,7 +24,7 @@ export function MealForm() {
         <Input label="Hora" style={{ width: '50%' }} keyboardType="numeric" />
       </DateContainer>
 
-      <View>
+      <View style={{ flex: 1 }}>
         <Typography variant="h4" style={{ marginBottom: 8 }}>
           Está dentro da dieta?
         </Typography>
@@ -33,6 +34,8 @@ export function MealForm() {
           <Select title="Não" variant="SECONDARY" />
         </SelectContainer>
       </View>
+
+      <Button title="Cadastrar refeição" />
     </MealFormContainer>
   )
 }
