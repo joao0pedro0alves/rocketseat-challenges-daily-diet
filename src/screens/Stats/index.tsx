@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import { View } from 'react-native'
 import { useTheme } from 'styled-components'
+
+import type { MealDTO } from '@/context/diet/MealDTO'
 import { useDietContext } from '@/context/hooks/useDietContext'
 
 import { DietPercentageHeader } from '@/components/DietPercentageHeader'
@@ -12,7 +14,6 @@ import {
   StatsContainer,
   Title,
 } from './styles'
-import type { MealDTO } from '@/_mock/_meals'
 
 export function Stats() {
   const theme = useTheme()

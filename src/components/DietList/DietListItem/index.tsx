@@ -1,6 +1,7 @@
-import type { MealDTO } from '@/_mock/_meals'
-import { DietListItemContainer, Title, Circle, Divider } from './styles'
+import type { MealDTO } from '@/context/diet/MealDTO'
+
 import { Typography } from '@/components/ui/Typography'
+import { DietListItemContainer, Title, Circle, Divider } from './styles'
 
 interface DietListItemProps {
   data: MealDTO

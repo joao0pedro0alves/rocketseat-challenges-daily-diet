@@ -1,11 +1,4 @@
-export interface MealDTO {
-  id: string
-  name: string
-  description: string
-  date: string
-  time: string
-  belongsToDiet: boolean
-}
+import type { MealDTO } from '@/context/diet/MealDTO'
 
 export const _mockMeals: MealDTO[] = [
   {

@@ -1,8 +1,9 @@
-import type { MealDTO } from '@/_mock/_meals'
 import { createContext } from 'react'
+import type { MealDTO } from './MealDTO'
 
 interface DietContextData {
   meals: MealDTO[]
+  isLoading: boolean
 
   addMeal: (data: Omit<MealDTO, 'id'>) => void
   getMeal: (mealId: string) => MealDTO | null
