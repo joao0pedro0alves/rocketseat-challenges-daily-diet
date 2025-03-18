@@ -12,6 +12,7 @@ import {
   StatsContainer,
   Title,
 } from './styles'
+import type { MealDTO } from '@/_mock/_meals'
 
 export function Stats() {
   const theme = useTheme()
@@ -32,7 +33,7 @@ export function Stats() {
         return acc
       },
       {
-        bestSequence: 0,
+        bestSequence: getMealsBestSequence(meals),
         mealsCount: 0,
         mealsInDietCount: 0,
         mealsOutDietCount: 0,
@@ -89,4 +90,27 @@ export function Stats() {
       </Content>
     </StatsContainer>
   )
+}
+
+function getMealsBestSequence(meals: MealDTO[]) {
+  const sequences: number[] = []
+  let currentSequenceIndex = 0
+
+  for (let index = 0; index < meals.length; index++) {
+    const meal = meals[index]
+
+    if (meal.belongsToDiet) {
+      sequences[currentSequenceIndex] = sequences[currentSequenceIndex]
+        ? sequences[currentSequenceIndex] + 1
+        : 1
+    } else {
+      currentSequenceIndex++
+    }
+  }
+
+  const sequencesList = [...new Set(sequences.filter(seq => seq !== undefined))]
+
+  const bestSequence = sequencesList.sort((a, b) => b - a).at(0)
+
+  return bestSequence || 0
 }
