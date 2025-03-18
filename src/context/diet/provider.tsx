@@ -1,14 +1,12 @@
 import { type ReactNode, useCallback, useState } from 'react'
 import { DietContext } from './context'
 
-import { _mockMeals, type MealDTO } from '@/_mock/_meals'
+import type { MealDTO } from '@/_mock/_meals'
+import { uniqueId } from '@/utils/uniqueId'
+import { parseDate } from '@/utils/parseDate'
 
 export function DietContextProvider({ children }: { children: ReactNode }) {
-  const [meals] = useState([..._mockMeals])
-
-  const addMeal = useCallback((data: Omit<MealDTO, 'id'>) => {
-    console.log(data)
-  }, [])
+  const [meals, setMeals] = useState<MealDTO[]>([])
 
   const getMeal = useCallback(
     (mealId: string) => {
@@ -17,13 +15,38 @@ export function DietContextProvider({ children }: { children: ReactNode }) {
     [meals]
   )
 
+  const addMeal = useCallback((data: Omit<MealDTO, 'id'>) => {
+    const { name, description, date, time, belongsToDiet } = data
+
+    const newMeal = {
+      id: uniqueId(),
+      name,
+      description,
+      date: parseDate(date),
+      time,
+      belongsToDiet,
+    }
+
+    setMeals(prevState => [...prevState, newMeal])
+  }, [])
+
   const removeMeal = useCallback((mealId: string) => {
-    console.log(mealId)
+    setMeals(prevState => prevState.filter(meal => meal.id !== mealId))
   }, [])
 
   const updateMeal = useCallback(
     (mealId: string, updatedData: Omit<MealDTO, 'id'>) => {
-      console.log(mealId, updatedData)
+      setMeals(prevState =>
+        prevState.map(meal =>
+          meal.id !== mealId
+            ? meal
+            : {
+                ...meal,
+                ...updatedData,
+                date: parseDate(updatedData.date),
+              }
+        )
+      )
     },
     []
   )

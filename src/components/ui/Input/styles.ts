@@ -17,6 +17,7 @@ export const Label = styled(Typography)`
 export const StyledTextInput = styled.TextInput<StyledTextInputProps>`
   width: 100%;
   max-height: 48px;
+  vertical-align: top;
 
   border-radius: 6px;
   padding-left: 12px;

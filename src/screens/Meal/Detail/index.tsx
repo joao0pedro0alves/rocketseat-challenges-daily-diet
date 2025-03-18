@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Alert, View } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 import { Header } from '@/components/Header'
 import { Typography } from '@/components/ui/Typography'
@@ -39,9 +39,9 @@ export function DetailMeal() {
       {
         text: 'Sim',
         onPress: () => {
-          removeMeal(mealId)
-
           navigation.navigate('home')
+
+          removeMeal(mealId)
         },
       },
       {
@@ -71,7 +71,7 @@ export function DetailMeal() {
           <Typography variant="h4">Data e hora</Typography>
 
           <Typography variant="body1" color="GRAY_200">
-            {meal?.date ? format(new Date(meal.date), 'dd/MM/yyyy') : '...'} às{' '}
+            {meal?.date ? format(parseISO(meal.date), 'dd/MM/yyyy') : '...'} às{' '}
             {meal?.time}
           </Typography>
         </Highlight>

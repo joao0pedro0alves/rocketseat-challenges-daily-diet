@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 import { Header } from '@/components/Header'
 import { MealForm, type MealFormData } from '@/components/MealForm'
@@ -41,7 +41,7 @@ export function EditMeal() {
     () => ({
       name: meal?.name,
       description: meal?.description,
-      date: meal ? format(new Date(meal?.date), 'dd/MM/yyyy') : '',
+      date: meal ? format(parseISO(meal?.date), 'dd/MM/yyyy') : '',
       time: meal?.time,
       belongsToDiet: meal?.belongsToDiet,
     }),

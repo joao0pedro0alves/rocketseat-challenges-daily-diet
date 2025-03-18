@@ -22,7 +22,7 @@ export function DietPercentageCard() {
     const mealsCount = meals.length
     const mealsInDietCount = meals.filter(meal => meal.belongsToDiet).length
 
-    return (mealsInDietCount * 100) / mealsCount
+    return mealsCount > 0 ? (mealsInDietCount * 100) / mealsCount : 0
   }, [meals])
 
   const navigation = useNavigation()
@@ -32,6 +32,8 @@ export function DietPercentageCard() {
   function handleShowStats() {
     navigation.navigate('stats')
   }
+
+  if (meals.length === 0) return null
 
   return (
     <DietPercentageCardContainer isLess={isLess}>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 import {
   DietListContainer,
@@ -12,6 +12,7 @@ import { _mockMeals, type MealDTO } from '@/_mock/_meals'
 import { DietListItem } from './DietListItem'
 import { DietListSectionHeader } from './DietListSectionHeader'
 import { useDietContext } from '@/context/hooks/useDietContext'
+import { Typography } from '../ui/Typography'
 
 export type DietSection = {
   title: string
@@ -30,7 +31,7 @@ export function DietList() {
       const data = meals.filter(meal => meal.date === date)
 
       acc.push({
-        title: format(new Date(date), 'dd.MM.yy'),
+        title: format(parseISO(date), 'dd.MM.yy'),
         data: data,
       })
 
@@ -50,9 +51,16 @@ export function DietList() {
         showsVerticalScrollIndicator={false}
         sections={sections}
         keyExtractor={(item, index) => `${(item as MealDTO).id}-${index}`}
-        contentContainerStyle={{
-          paddingBottom: 100,
-        }}
+        contentContainerStyle={[
+          {
+            paddingBottom: 100,
+          },
+          meals.length === 0 && {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
+        ]}
         renderItem={props => {
           const meal = props.item as MealDTO
           return (
@@ -63,6 +71,11 @@ export function DietList() {
           const dietSection = section as unknown as DietSection
           return <DietListSectionHeader title={dietSection.title} />
         }}
+        ListEmptyComponent={() => (
+          <Typography color="GRAY_200" variant="body2">
+            Que tal começar a registrar suas refeições?
+          </Typography>
+        )}
       />
 
       <DietListLinearGradient />

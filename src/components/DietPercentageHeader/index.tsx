@@ -12,7 +12,6 @@ import {
   IconButton,
 } from './styles'
 import { fDecimal } from '@/utils/fDecimal'
-import { headerVariants } from '../Header/styles'
 
 export function DietPercentageHeader() {
   const theme = useTheme()
@@ -25,7 +24,7 @@ export function DietPercentageHeader() {
     const mealsCount = meals.length
     const mealsInDietCount = meals.filter(meal => meal.belongsToDiet).length
 
-    return (mealsInDietCount * 100) / mealsCount
+    return mealsCount > 0 ? (mealsInDietCount * 100) / mealsCount : 0
   }, [meals])
 
   const isLess = percentage < 50
