@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import { Alert, View } from 'react-native'
+import { useMemo, useState } from 'react'
+import { View } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
 import { format, parseISO } from 'date-fns'
@@ -11,14 +11,16 @@ import { Button } from '@/components/ui/Button'
 import { useDietContext } from '@/context/hooks/useDietContext'
 
 import { Content, DetailMealContainer, Highlight } from './styles'
+import { Confirmation } from '@/components/ui/Confirmation'
 
 type RouteParams = {
   mealId: string
 }
 
 export function DetailMeal() {
-  const navigation = useNavigation()
+  const [confirmationOpen, setConfirmationOpen] = useState(false)
 
+  const navigation = useNavigation()
   const route = useRoute()
 
   const { mealId } = route.params as RouteParams
@@ -29,26 +31,24 @@ export function DetailMeal() {
     return getMeal(mealId)
   }, [getMeal, mealId])
 
+  function handleOpenConfirmation() {
+    setConfirmationOpen(true)
+  }
+
+  function handleCloseConfirmation() {
+    setConfirmationOpen(false)
+  }
+
   function handleEditMeal() {
     navigation.navigate('editMeal', { mealId })
   }
 
   function handleRemoveMeal() {
-    // Todo: desenvolver componente de confirmação
-    Alert.alert('Remover', 'Tem certeza que deseja remover a refeição?', [
-      {
-        text: 'Sim',
-        onPress: () => {
-          navigation.navigate('home')
+    handleCloseConfirmation()
 
-          removeMeal(mealId)
-        },
-      },
-      {
-        text: 'Não',
-        style: 'cancel',
-      },
-    ])
+    removeMeal(mealId)
+
+    navigation.navigate('home')
   }
 
   return (
@@ -90,13 +90,21 @@ export function DetailMeal() {
           />
 
           <Button
-            onPress={handleRemoveMeal}
+            onPress={handleOpenConfirmation}
             icon={Trash}
             variant="OUTLINED"
             title="Excluir refeição"
           />
         </View>
       </Content>
+
+      <Confirmation
+        open={confirmationOpen}
+        title="Remover"
+        content="Tem certeza que deseja remover a refeição?"
+        onAccept={handleRemoveMeal}
+        onRefuse={handleCloseConfirmation}
+      />
     </DetailMealContainer>
   )
 }
