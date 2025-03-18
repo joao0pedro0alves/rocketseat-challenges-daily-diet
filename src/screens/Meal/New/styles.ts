@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+// import { SafeAreaView } from 'react-native-safe-area-context'
 
-export const NewMealContainer = styled(SafeAreaView)`
+export const NewMealContainer = styled.View`
   flex: 1;
 `
 

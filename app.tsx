@@ -30,9 +30,9 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar
-        style="light"
+        style="dark"
         translucent
-        backgroundColor={theme.COLORS.GRAY_100}
+        // backgroundColor={theme.COLORS.GRAY_100}
       />
 
       <SafeAreaProvider>

@@ -1,12 +1,15 @@
 import styled from 'styled-components/native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+// import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { Typography } from '@/components/ui/Typography'
+import { View } from 'react-native'
 
-export const StatsContainer = styled(SafeAreaView)`
+type StatsStyleProps = {
+  variant?: 'green' | 'red'
+}
+
+export const StatsContainer = styled(View)<StatsStyleProps>`
   flex:1;
-  /* background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT}; */
-
 `
 
 export const Content = styled.View`
@@ -26,11 +29,7 @@ export const Title = styled(Typography)`
   margin-bottom: 24px;
 `
 
-type StatsCardProps = {
-  variant?: 'green' | 'red'
-}
-
-export const StatsCard = styled.View<StatsCardProps>`
+export const StatsCard = styled.View<StatsStyleProps>`
   background-color: ${({ theme, variant }) => {
     if (variant === 'green') {
       return theme.COLORS.GREEN_LIGHT
