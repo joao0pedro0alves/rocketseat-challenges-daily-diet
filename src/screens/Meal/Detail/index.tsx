@@ -1,19 +1,36 @@
+import { useMemo } from 'react'
 import { Alert, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
+import { format } from 'date-fns'
 
 import { Header } from '@/components/Header'
 import { Typography } from '@/components/ui/Typography'
 import { Chip } from '@/components/ui/Chip'
 import { Button } from '@/components/ui/Button'
+import { useDietContext } from '@/context/hooks/useDietContext'
 
 import { Content, DetailMealContainer, Highlight } from './styles'
+
+type RouteParams = {
+  mealId: string
+}
 
 export function DetailMeal() {
   const navigation = useNavigation()
 
+  const route = useRoute()
+
+  const { mealId } = route.params as RouteParams
+
+  const { getMeal, removeMeal } = useDietContext()
+
+  const meal = useMemo(() => {
+    return getMeal(mealId)
+  }, [getMeal, mealId])
+
   function handleEditMeal() {
-    navigation.navigate('editMeal', { mealId: '1' })
+    navigation.navigate('editMeal', { mealId })
   }
 
   function handleRemoveMeal() {
@@ -21,6 +38,11 @@ export function DetailMeal() {
     Alert.alert('Remover', 'Tem certeza que deseja remover a refeição?', [
       {
         text: 'Sim',
+        onPress: () => {
+          removeMeal(mealId)
+
+          navigation.navigate('home')
+        },
       },
       {
         text: 'Não',
@@ -31,14 +53,17 @@ export function DetailMeal() {
 
   return (
     <DetailMealContainer>
-      <Header variant="green" title="Refeição" />
+      <Header
+        variant={meal?.belongsToDiet ? 'green' : 'red'}
+        title="Refeição"
+      />
 
       <Content>
         <Highlight>
-          <Typography variant="h2">Sanduíche</Typography>
+          <Typography variant="h2">{meal?.name}</Typography>
 
           <Typography variant="body1" color="GRAY_200">
-            Sanduíche de pão integral com atum e salada de alface e tomate
+            {meal?.description}
           </Typography>
         </Highlight>
 
@@ -46,11 +71,16 @@ export function DetailMeal() {
           <Typography variant="h4">Data e hora</Typography>
 
           <Typography variant="body1" color="GRAY_200">
-            12/08/2022 às 16:00
+            {meal?.date ? format(new Date(meal.date), 'dd/MM/yyyy') : '...'} às{' '}
+            {meal?.time}
           </Typography>
         </Highlight>
 
-        <Chip title="dentro da dieta" />
+        {meal?.belongsToDiet ? (
+          <Chip title="dentro da dieta" />
+        ) : (
+          <Chip variant="SECONDARY" title="fora da dieta" />
+        )}
 
         <View style={{ flex: 1, justifyContent: 'flex-end', gap: 8 }}>
           <Button

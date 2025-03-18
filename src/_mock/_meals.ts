@@ -70,7 +70,7 @@ export const _mockMeals: MealDTO[] = [
     description: 'Grilled steak with mashed potatoes and asparagus.',
     date: '2025-03-15',
     time: '19:00',
-    belongsToDiet: false,
+    belongsToDiet: true,
   },
   {
     id: '9',
@@ -94,6 +94,6 @@ export const _mockMeals: MealDTO[] = [
     description: 'Protein shake with banana and almond milk.',
     date: '2025-03-17',
     time: '22:30',
-    belongsToDiet: false,
+    belongsToDiet: true,
   },
 ]

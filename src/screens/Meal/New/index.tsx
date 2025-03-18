@@ -1,17 +1,25 @@
 import { useNavigation } from '@react-navigation/native'
 
 import { Header } from '@/components/Header'
-import { MealForm } from '@/components/MealForm'
+import { MealForm, type MealFormData } from '@/components/MealForm'
 import { Content, NewMealContainer } from './styles'
+import { useDietContext } from '@/context/hooks/useDietContext'
 
 export function NewMeal() {
   const navigation = useNavigation()
 
-  async function handleSave(data: unknown) {
-    console.log(data)
+  const { addMeal } = useDietContext()
 
-    // #...
-    navigation.navigate('feedback', { inDiet: true })
+  async function handleSave(data: MealFormData) {
+    addMeal({
+      name: data.name,
+      description: data.description,
+      date: data.date,
+      time: data.time,
+      belongsToDiet: data.belongsToDiet,
+    })
+
+    navigation.navigate('feedback', { inDiet: data.belongsToDiet })
   }
 
   return (

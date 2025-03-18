@@ -19,6 +19,7 @@ import {
 
 import { dateApplyMask } from '@/utils/masks/date-apply-mask'
 import { timeApplyMask } from '@/utils/masks/time-apply-mask'
+import { format } from 'date-fns'
 
 // --------------------------------------------------------------------------
 
@@ -38,7 +39,7 @@ interface MealFormProps {
   mode?: 'edit' | 'new'
   initialValues?: Partial<MealFormData>
 
-  onSubmit: (data: unknown) => void
+  onSubmit: (data: MealFormData) => void
 }
 
 export function MealForm({ mode, initialValues, onSubmit }: MealFormProps) {
@@ -47,9 +48,9 @@ export function MealForm({ mode, initialValues, onSubmit }: MealFormProps) {
     defaultValues: {
       name: initialValues?.name || '',
       description: initialValues?.description || '',
-      date: initialValues?.date || '',
-      time: initialValues?.time || '',
-      belongsToDiet: initialValues?.belongsToDiet || true,
+      date: initialValues?.date || format(new Date(), 'dd/MM/yyyy'),
+      time: initialValues?.time || format(new Date(), 'hh:mm'),
+      belongsToDiet: initialValues?.belongsToDiet ?? true,
     },
   })
 
